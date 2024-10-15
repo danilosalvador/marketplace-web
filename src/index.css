@@ -29,6 +29,27 @@
       --chart-3: 197 37% 24%;
       --chart-4: 43 74% 66%;
       --chart-5: 27 87% 67%;
+
+      --ff-title: "DM Sans", sans-serif;
+      --ff: "Poppins", sans-serif;
+
+      --fs-title-lg: 1.75rem;
+      --fs-title-md: 1.5rem;
+      --fs-title-sm: 1.125rem;
+      --fs-subtitle: 1rem;
+      --fs-body-md: 1rem;
+      --fs-body-sm: .875rem;
+      --fs-body-xs: .75rem;
+      --fs-label-md: .75rem;
+      --fs-label-sm: .625rem;
+      --fs-action-md: 1rem;
+      --fs-action-sm: .875rem;
+
+      --fw-title: 700;
+      --fw-subtitle: 600;
+      --fw-body: 400;
+      --fw-label: 500;
+      --fw-action: 500;
     }
   
     .dark {

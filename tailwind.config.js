@@ -9,6 +9,33 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        title: ['var(--ff-title)'],
+        text: ['var(--ff)'],
+      },
+      fontSize: {
+        'title-lg': 'var(--fs-title-lg)',
+        'title-md': 'var(--fs-title-md)',
+        'title-sm': 'var(--fs-title-sm)',
+        subtitle: 'var(--fs-subtitle)',
+        'body-md': 'var(--fs-body-md)',
+        'body-sm': 'var(--fs-body-sm)',
+        'body-xs': 'var(--fs-body-xs)',
+        'label-md': 'var(--fs-label-md)',
+        'label-sm': 'var(--fs-label-sm)',
+        'action-md': 'var(--fs-action-md)',
+        'action-sm': 'var(--fs-action-sm)',
+      },
+      fontWeight: {
+        'fw-title': 'var(--fw-title)',
+        'fw-subtitle': 'var(--fw-subtitle)',
+        'fw-body': 'var(--fw-body)',
+        'fw-label': 'var(--fw-label)',
+        'fw-action': 'var(--fw-action)',
+      },
+      lineHeight: {
+        default: '1.2',
+      },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
