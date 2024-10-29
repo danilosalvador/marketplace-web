@@ -1,9 +1,30 @@
+import { Helmet } from 'react-helmet-async'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
+
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Helmet } from 'react-helmet-async'
+
+const signInModel = z.object({
+  email: z.string().email(),
+  password: z.string(),
+})
+
+type signInForm = z.infer<typeof signInModel>
 
 export function SignIn() {
+  const {
+    register,
+    handleSubmit,
+    formState: { isSubmitting },
+  } = useForm<signInForm>()
+
+  async function handleSignIn({ email, password }: signInForm) {
+    console.log(email)
+    console.log(password)
+  }
+
   return (
     <>
       <Helmet title="Login" />
@@ -17,7 +38,10 @@ export function SignIn() {
               Informe seu e-mail e senha para entrar
             </p>
           </div>
-          <form className="flex flex-col gap-12">
+          <form
+            onSubmit={handleSubmit(handleSignIn)}
+            className="flex flex-col gap-12"
+          >
             <div className="space-y-2">
               <div className="space-y-2">
                 <Label htmlFor="email">E-mail</Label>
@@ -25,6 +49,7 @@ export function SignIn() {
                   id="email"
                   type="email"
                   placeholder="Seu e-mail cadastrado"
+                  {...register('email')}
                 />
               </div>
               <div className="space-y-2">
@@ -33,10 +58,13 @@ export function SignIn() {
                   id="password"
                   type="password"
                   placeholder="Sua senha de acesso"
+                  {...register('password')}
                 />
               </div>
             </div>
-            <Button type="submit">Acessar</Button>
+            <Button type="submit" disabled={isSubmitting}>
+              Acessar
+            </Button>
           </form>
         </div>
         <div className="flex flex-col gap-5 w-full">
