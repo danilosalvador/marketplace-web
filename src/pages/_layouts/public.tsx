@@ -5,7 +5,7 @@ import illustration from '../../assets/illustration.png'
 
 export function PublicLayout() {
   return (
-    <div className="min-h-screen grid grid-cols-2 bg-background">
+    <div className="grid grid-cols-2 min-h-screen bg-background antialiased">
       <div className="h-full flex flex-col">
         <div className="flex items-center gap-5 p-10">
           <img src={logo} alt="" />

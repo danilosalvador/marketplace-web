@@ -4,7 +4,7 @@
 
 @layer base {
     :root {
-      --background: 0 47% 97%;
+      --background: #FBF4F4;
       --foreground: 20 14.3% 4.1%;
       --card: 0 0% 100%;
       --card-foreground: 20 14.3% 4.1%;
@@ -42,6 +42,8 @@
       --gray-300: #666666;
       --gray-400: #3D3D3D;
       --gray-500: #1D1D1D;
+
+      --shape: #D4A5A5
 
       --ff-title: "DM Sans", sans-serif;
       --ff: "Poppins", sans-serif;

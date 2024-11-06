@@ -43,7 +43,7 @@ export default {
       },
       colors: {
         background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
+        foreground: 'hsl(var(--shape))',
         card: {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
@@ -92,6 +92,7 @@ export default {
         'gray-300': 'var(--gray-300)',
         'gray-400': 'var(--gray-400)',
         'gray-500': 'var(--gray-500)',
+        shape: 'var(--shape)',
       },
     },
   },
