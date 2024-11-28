@@ -1,10 +1,16 @@
 import { Helmet } from 'react-helmet-async'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
+import { useMutation } from '@tanstack/react-query'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
+import { toast } from 'sonner'
+
+import { signIn } from '@/api/sign-in'
 
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
+
+import { Lock, Mail } from 'lucide-react'
 
 const signInModel = z.object({
   email: z.string().email(),
@@ -14,15 +20,36 @@ const signInModel = z.object({
 type signInForm = z.infer<typeof signInModel>
 
 export function SignIn() {
+  const [searchParams] = useSearchParams()
+  const navigate = useNavigate()
+
   const {
     register,
     handleSubmit,
     formState: { isSubmitting },
-  } = useForm<signInForm>()
+  } = useForm<signInForm>({
+    defaultValues: {
+      email: searchParams.get('email') ?? '',
+    },
+  })
+
+  const { mutateAsync: onSignIn } = useMutation({
+    mutationFn: signIn,
+  })
 
   async function handleSignIn({ email, password }: signInForm) {
-    console.log(email)
-    console.log(password)
+    try {
+      const token = await onSignIn({
+        email,
+        password,
+      })
+      console.log(token)
+      //localStorage.setItem("auth", JSON.stringify(token));
+
+      navigate('/')
+    } catch {
+      toast.error('Credenciais inválidas.')
+    }
   }
 
   return (
@@ -40,27 +67,25 @@ export function SignIn() {
           </div>
           <form
             onSubmit={handleSubmit(handleSignIn)}
-            className="flex flex-col gap-12"
+            className="flex flex-col gap-9"
           >
-            <div className="space-y-2">
-              <div className="space-y-2">
-                <Label htmlFor="email">E-mail</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="Seu e-mail cadastrado"
-                  {...register('email')}
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="password">Senha</Label>
-                <Input
-                  id="password"
-                  type="password"
-                  placeholder="Sua senha de acesso"
-                  {...register('password')}
-                />
-              </div>
+            <div className="space-y-8">
+              <Input
+                id="email"
+                type="email"
+                label="E-mail"
+                icon={<Mail />}
+                placeholder="Seu e-mail cadastrado"
+                {...register('email')}
+              />
+              <Input
+                id="password"
+                type="password"
+                label="Senha"
+                icon={<Lock />}
+                placeholder="Sua senha de acesso"
+                {...register('password')}
+              />
             </div>
             <Button type="submit" disabled={isSubmitting}>
               Acessar
@@ -71,7 +96,9 @@ export function SignIn() {
           <span className="font-text text-body-md text-gray-300">
             Ainda não tem conta?
           </span>
-          <Button variant="outline">Cadastrar</Button>
+          <Button asChild variant="outline">
+            <Link to="/sign-up">Cadastrar</Link>
+          </Button>
         </div>
       </div>
     </>
