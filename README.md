@@ -67,7 +67,8 @@ O login e senha do usuário criado pela seed é:
 
 ## 📺 Demonstração
 
-<video src="https://youtu.be/N93Gt8Xegys"></video>
+- YouTube: [MBA | Rocketseat - Resolução do desafio Marketplace](https://www.youtube.com/watch?v=N93Gt8Xegys)
 
 ## 📝 Licença
+
 Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
